@@ -1,7 +1,11 @@
 module.exports = {
   content: ["./src/**/*.{vue,js,ts,jsx,tsx,md,mdx}"],
   theme: {
-    extend: {},
+    extend: {
+      fontFamily: {
+        fira: ["Fira Sans", "sans-serif"],
+      },
+    },
   },
-  plugins: [],
+  plugins: [require("@tailwindcss/typography")],
 };
