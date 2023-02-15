@@ -26,17 +26,21 @@ const {title, description, entries} = await extract('https://anchor.fm/s/81f880f
 	<meta charset="utf-8" />
 	<meta name="viewport" content="width=device-width" />
 	<title>{title}</title>
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Josefin+Sans&family=Rubik:wght@300&display=swap" rel="stylesheet">
 </head>
 
-<body class="bg-slate-800 text-white dark">
+<body class="bg-slate-800 text-white dark font-rubik">
 	<div class="xl:w-3/5 lg:w-3/4 md:w-5/6 w-full m-auto md:mt-12">
 		<header class="bg-black flex flex-col md:flex-row shadow-lg rounded">
 			<img src="/images/logo.jpg" class="w-[250px] m-auto" alt="Human Side of Dev" />
 			<div class="flex flex-col justify-center items-center flex-grow gap-6">
-				<h2 class="text-xl md:text-2xl text-center pt-3 md:pt-0 italic text-slate-300">Listen to developers talk about their experiences in the tech industry.</h2>
-				<div class="flex flex-col md:flex-row gap-3 mb-4">
-					<a href="https://podcasts.apple.com/us/podcast/human-side-of-dev/id1671873029"><img src="/images/apple.svg" class="w-[150px] border border-white rounded-lg" /></a>
-					<a href="https://open.spotify.com/show/2aZnkERaQhEbglgP8kRUh0"><img src="/images/spotify.svg" class="w-[150px] border border-white rounded-lg" /></a>
+				<h2 class="text-xl md:text-2xl text-center pt-3 md:pt-0 italic text-slate-300 mx-3">Listen to developers talk about their experiences in the tech industry.</h2>
+				<div class="flex gap-3 mb-4">
+					<a href="https://podcasts.apple.com/us/podcast/human-side-of-dev/id1671873029"><img src="/images/apple.png" class="w-8 border-transparent hover:border-white border rounded-lg" /></a>
+					<a href="https://open.spotify.com/show/2aZnkERaQhEbglgP8kRUh0"><img src="/images/spotify.png" class="w-8 border-transparent hover:border-white border rounded-lg" /></a>
+					<a href="https://anchor.fm/s/81f880f0/podcast/rss"><img src="/images/rss.svg" class="w-8 border-transparent hover:border-white border rounded-lg" /></a>
 				</div>
 				<!-- <div class="bg-gray-900 flex gap-6 p-4 mx-3 mb-3 w-full md:w-[500px]">
 					<div class="">
@@ -55,7 +59,7 @@ const {title, description, entries} = await extract('https://anchor.fm/s/81f880f
 		<main class="p-6">
 			{entries?.map((episode: any) => 
 				<article class="flex flex-col gap-4 bg-slate-900 p-4 shadow-lg rounded">
-					<h2 class="text-3xl">{episode.title}</h2>
+					<h2 class="text-3xl font-josefin">{episode.title}</h2>
 					<div class="prose dark:prose-dark m-auto">
 						<p set:html={episode.summary} />	
 					</div>

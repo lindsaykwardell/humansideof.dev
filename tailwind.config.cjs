@@ -4,6 +4,10 @@ module.exports = {
 	darkMode: 'class',
 	theme: {
 		extend: {
+			fontFamily: {
+				rubik: ['Rubik', 'sans-serif'],
+				josefin: ['Josefin Sans', 'sans-serif']
+			},
 			typography: (theme) => ({
 				dark: {
 				  css: {
