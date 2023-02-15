@@ -1,5 +1,22 @@
 ---
+import { extract, FeedData, FeedEntry } from '@extractus/feed-extractor'
 
+const {title, entries} = await extract('https://anchor.fm/s/81f880f0/podcast/rss', {
+	getExtraEntryFields: (feedEntry: any) => {
+    const {
+      enclosure,
+    } = feedEntry
+    return {
+      enclosure: {
+        url: enclosure['@_url'],
+        type: enclosure['@_type'],
+        length: enclosure['@_length']
+      },
+    }
+  }
+}) as any
+
+console.log(entries)
 ---
 
 <html lang="en">
@@ -7,27 +24,41 @@
 <head>
 	<meta charset="utf-8" />
 	<meta name="viewport" content="width=device-width" />
-	<title>Human Side of Dev</title>
+	<title>{title}</title>
 </head>
 
-<body>
-	<div class="flex flex-col items-center">
-		<h1 class="text-6xl font-fira tracking-widest text-slate-500 py-6 smallcaps">
-			Human Side of Dev
-		</h1>
-		<div class="bg-white shadow-md rounded-lg p-6 w-2/3 prose lg:prose-xl">
-			<p>There's a lot to talk about in software development. New frameworks, new techniques, new methods of delivering
-				apps to users. New tools we need to learn in order to keep on top of our profession.</p>
-			<p>But there's more to being a developer than knowing how to code. There's a human aspect to software development,
-				a story that each of us brings with us to the code. A reason we picked up coding, and why we keep doing it.</p>
-			<p>Each individual has a unique perspective on life, and that influences how they approach software development.
-				We've all had struggles and difficulties, as well as triumphs. From the freshly minted junior developer to the
-				most seasoned architect, our personal journeys shape how we write software, and what kinds of software we write.
-			</p>
-			<p>I think it's important to consider the people that write the applications we use. Who are they? What do they
-				think? What have they been through to be where they are? What are they still struggling with?</p>
-			<p>I think that story is worth talking about.</p>
-		</div>
+<body class="bg-slate-800 text-white">
+	<div class="w-3/5 m-auto mt-12 shadow-lg rounded">
+		<header class="bg-black flex">
+			<img src="/images/logo.jpg" class="w-[250px]" alt="Human Side of Dev" />
+			<div class="flex flex-col justify-center items-center flex-grow gap-6">
+				<h2 class="text-2xl">Conversations with developers about working in tech</h2>
+				<div class="bg-gray-900 flex gap-6 p-4 mx-3">
+					<div class="w-[200px]">
+						<img src="https://www.lindsaykwardell.com/lindsay.jpg" class="rounded-full w-32 h-32 p-2 border border-white object-cover" />
+					</div>
+					<div class="flex grow-0 flex-col gap-3">
+						<h3 class="text-xl">Lindsay Wardell</h3>
+						<p class="text-gray-200 text-sm">I am a programmer, writer, and mother. I write and talk about Elm, Vue, Vite, and other tools that I enjoy learning about and using.</p>
+						<a href="https://www.lindsaykwardell.com/@lindsay" class="flex gap-1 underline text-gray-200 hover:text-gray-100 text-sm">
+							<svg width="32" height="32" viewBox="0 0 24 24"><path d="M16 17.24c2.5-.3 4.69-1.84 5-3.25a33.59 33.59 0 0 0 .4-5.42C21.33 4.23 18.48 3 18.48 3A17.64 17.64 0 0 0 12 2a17.64 17.64 0 0 0-6.48 1S2.68 4.23 2.68 8.57v3.44c.1 4.24.78 8.42 4.7 9.46A14.73 14.73 0 0 0 12 22a9.21 9.21 0 0 0 3.54-.81l-.07-1.64A11.41 11.41 0 0 1 12 20c-1.8-.06-3.71-.19-4-2.4a4.26 4.26 0 0 1 0-.63a22.68 22.68 0 0 0 4 .54a23.6 23.6 0 0 0 4-.27zm-6.54-9.8q-1.35 0-1.35 1.62v5.1H6V8.9a3.78 3.78 0 0 1 .82-2.56a2.85 2.85 0 0 1 2.23-1a2.68 2.68 0 0 1 2.4 1.23l.52.87l.52-.87a2.68 2.68 0 0 1 2.4-1.23a2.85 2.85 0 0 1 2.23 1A3.78 3.78 0 0 1 18 8.9v5.26h-2.11v-5.1q0-1.62-1.35-1.62c-1 0-1.51.64-1.51 1.92v2.79H11V9.36c0-1.28-.54-1.92-1.54-1.92z" fill="currentColor"/></svg>
+							Mastodon
+						</a>
+					</div>
+				</div>
+			</div>
+		</header>
+		<main>
+			{entries?.map((episode: any) => 
+				<article class="flex">
+					<h2>{episode.title}</h2>
+					<p>{episode.description}</p>
+					<audio controls>
+						<source src={episode?.enclosure.url} />
+					</audio>
+				</article>
+			)}
+		</main>
 	</div>
 </body>
 
