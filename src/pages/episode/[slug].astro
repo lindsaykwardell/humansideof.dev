@@ -9,6 +9,7 @@ const episode = await getEpisode(slug!)
 
 if (!episode) return Astro.redirect("/404");
 ---
-<DefaultLayout>
+<DefaultLayout title={episode.title} description={episode.description} permalink={`https://humansideof.dev/episode/${slug}`}>
     <Episode episode={episode} showSummary={true} />
+
 </DefaultLayout>
