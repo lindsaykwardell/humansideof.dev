@@ -1,0 +1,32 @@
+---
+import dayjs from 'dayjs'
+
+interface Props {
+    episode: {
+        title: string
+        published: string
+        enclosure: {
+            url: string
+        }
+        description: string
+        summary: string
+    },
+    showSummary: boolean
+}
+
+const { episode, showSummary } = Astro.props;
+---
+<article class="flex flex-col gap-4 bg-slate-900 p-4 shadow-lg rounded">
+    <div class="flex justify-between">
+        <a href={`/episode/${episode.title.toLowerCase().replaceAll(' ', '-')}`}>
+            <h2 class="text-3xl font-josefin">{episode.title}</h2>
+        </a>
+        <time datetime={episode.published} class="text-sm">{dayjs(episode.published).format("MMM DD, YYYY")}</time>
+    </div>
+    <div class="prose dark:prose-dark m-auto">
+        <p set:html={showSummary ? episode.summary : episode.description} />
+    </div>
+    <audio controls class="w-full">
+        <source src={episode?.enclosure.url} />
+    </audio>
+</article>

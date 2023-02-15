@@ -1,0 +1,14 @@
+---
+import { getEpisode } from '../../api/rss';
+import DefaultLayout from '../../layouts/DefaultLayout.astro'
+import Episode from '../../components/Episode.astro';
+
+const { slug } = Astro.params;
+
+const episode = await getEpisode(slug!)
+
+if (!episode) return Astro.redirect("/404");
+---
+<DefaultLayout>
+    <Episode episode={episode} showSummary={true} />
+</DefaultLayout>
