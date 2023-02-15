@@ -7,6 +7,8 @@ const { entries } = await getEpisodes()
 
 ---
 <DefaultLayout>
+	<hr class="my-4" />
+	<h2 class="font-josefin text-3xl text-center">Latest Episodes</h2>
 	{entries?.map((episode: any) => 
 		<Episode episode={episode} showSummary={false} />
 	)}
