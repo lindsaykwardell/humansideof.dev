@@ -19,7 +19,7 @@ const { episode, showSummary } = Astro.props;
 <article class="flex flex-col gap-4 bg-slate-900 p-4 shadow-lg rounded">
     <div class="flex justify-between">
         <a href={`/episode/${episode.title.toLowerCase().replaceAll(' ', '-')}`}>
-            <h2 class="text-3xl font-josefin">{episode.title}</h2>
+            <h2 class="text-3xl font-josefin underline">{episode.title}</h2>
         </a>
         <time datetime={episode.published} class="text-sm">{dayjs(episode.published).format("MMM DD, YYYY")}</time>
     </div>
