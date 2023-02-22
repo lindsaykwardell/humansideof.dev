@@ -19,18 +19,20 @@ const hasNext = pageEntries.length === 10;
 ---
 
 <DefaultLayout>
-  <h2 class="font-josefin text-3xl text-center">Page {page} of {totalPages}</h2>
+  <h2 class="font-josefin text-xl text-center text-stone-400">
+    Page {page} of {totalPages}
+  </h2>
   {
     pageEntries?.map((episode: any) => (
       <Episode episode={episode} showSummary={false} />
     ))
   }
-  <div class="flex justify-center">
+  <div class="flex justify-around">
     {
       hasPrevious && (
         <a
           href={`/episode/all/${page - 1}`}
-          class="text-2xl font-josefin text-stone-400 hover:text-stone-300"
+          class="font-josefin text-stone-400 hover:text-stone-300 hover:underline"
         >
           Previous
         </a>
@@ -40,7 +42,7 @@ const hasNext = pageEntries.length === 10;
       hasNext && (
         <a
           href={`/episode/all/${page + 1}`}
-          class="text-2xl font-josefin text-stone-400 hover:text-stone-300"
+          class="font-josefin text-stone-400 hover:text-stone-300 hover:underline"
         >
           Next
         </a>
