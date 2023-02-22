@@ -21,7 +21,7 @@ const { episode, showSummary } = Astro.props;
         <a href={`/episode/${episode.title.toLowerCase().replaceAll(' ', '-')}`} class="hover:text-red-700 transition duration-150 ">
             <h2 class="text-2xl font-josefin underline">{episode.title}</h2>
         </a>
-        <time datetime={episode.published} class="text-sm">{dayjs(episode.published).format("MMM DD, YYYY")}</time>
+        <time datetime={episode.published} class="text-sm whitespace-nowrap">{dayjs(episode.published).format("MMM DD, YYYY")}</time>
     </div>
     <div class="prose dark:prose-dark m-auto">
         <p set:html={showSummary ? episode.summary : episode.description} />

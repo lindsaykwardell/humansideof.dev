@@ -5,6 +5,8 @@ import Episode from "../../components/Episode.astro";
 
 const { slug } = Astro.params as { slug: string };
 
+if (slug === "all") return Astro.redirect("/episode/all/1");
+
 const episode = await getEpisode(slug);
 
 if (!episode) return Astro.redirect("/404");

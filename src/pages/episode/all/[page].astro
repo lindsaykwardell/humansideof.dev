@@ -1,0 +1,50 @@
+---
+import DefaultLayout from "../../../layouts/DefaultLayout.astro";
+import Episode from "../../../components/Episode.astro";
+import { getEpisodes } from "../../../api/rss";
+
+const page = +(Astro.params.page || 0);
+
+if (page <= 0) return Astro.redirect("/episode/all/1");
+
+const { entries } = await getEpisodes();
+
+const pageEntries = entries.slice((page - 1) * 10, page * 10);
+
+if (!pageEntries.length) return Astro.redirect("/404");
+
+const totalPages = Math.ceil(entries.length / 10);
+const hasPrevious = page > 1;
+const hasNext = pageEntries.length === 10;
+---
+
+<DefaultLayout>
+  <h2 class="font-josefin text-3xl text-center">Page {page} of {totalPages}</h2>
+  {
+    pageEntries?.map((episode: any) => (
+      <Episode episode={episode} showSummary={false} />
+    ))
+  }
+  <div class="flex justify-center">
+    {
+      hasPrevious && (
+        <a
+          href={`/episode/all/${page - 1}`}
+          class="text-2xl font-josefin text-stone-400 hover:text-stone-300"
+        >
+          Previous
+        </a>
+      )
+    }
+    {
+      hasNext && (
+        <a
+          href={`/episode/all/${page + 1}`}
+          class="text-2xl font-josefin text-stone-400 hover:text-stone-300"
+        >
+          Next
+        </a>
+      )
+    }
+  </div>
+</DefaultLayout>

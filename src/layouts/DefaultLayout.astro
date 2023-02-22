@@ -1,27 +1,27 @@
 ---
 interface Props {
-	title?: string
-	description?: string
-	permalink?: string
+  title?: string;
+  description?: string;
+  permalink?: string;
 }
 
-let { title, description, permalink } = Astro.props
+let { title, description, permalink } = Astro.props;
 
-const slogan = "Listen to developers talk about their experiences in the tech industry"
+const slogan =
+  "Listen to developers talk about their experiences in the tech industry";
 
-title = `Human Side of Dev${title ? ` - ${title}` : ''}`
-description = description || slogan
-permalink = permalink || "https://humansideof.dev"
+title = `Human Side of Dev${title ? ` - ${title}` : ""}`;
+description = description || slogan;
+permalink = permalink || "https://humansideof.dev";
 ---
 
 <html lang="en">
-
-<head>
-	<meta charset="utf-8" />
-	<meta name="viewport" content="width=device-width" />
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
     <link rel="icon" type="image/x-icon" href="/favicon.svg" />
 
-	<!-- Primary Meta Tags -->
+    <!-- Primary Meta Tags -->
     <title>{title}</title>
     <meta name="title" content={title} />
     <meta name="description" content={description} />
@@ -40,41 +40,110 @@ permalink = permalink || "https://humansideof.dev"
     <meta property="twitter:title" content={title} />
     <meta property="twitter:description" content={description} />
     <meta property="twitter:image" content="/images/logo.jpg" />
-    
-	<link rel="preconnect" href="https://fonts.googleapis.com">
-	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-	<link href="https://fonts.googleapis.com/css2?family=Josefin+Sans&family=Rubik:wght@300&display=swap" rel="stylesheet">
 
-	<script data-goatcounter="https://humansideofdev.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
-</head>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Josefin+Sans&family=Rubik:wght@300&display=swap"
+      rel="stylesheet"
+    />
 
-<body class="bg-stone-700 text-white dark font-rubik">
-	<div class="bg-stone-800 xl:w-3/5 lg:w-3/4 md:w-5/6 w-full m-auto md:my-12 flex flex-col gap-6">
-		<header class="bg-black flex flex-col md:flex-row shadow-lg rounded">
-			<a href="/">
-                <img src="/images/logo.jpg" class="w-[250px] m-auto" alt="Human Side of Dev" />
-            </a>
-			<div class="flex flex-col justify-center items-center flex-grow gap-6">
-				<h2 class="text-xl md:text-2xl text-center pt-3 md:pt-0 italic text-stone-300 mx-3">{slogan}</h2>
-				<div class="flex gap-3 mb-4">
-					<a href="https://podcasts.apple.com/us/podcast/human-side-of-dev/id1671873029"><img alt="Apple Podcasts" src="/images/apple.png" class="w-8 border-transparent hover:border-white border rounded-lg" /></a>
-					<a href="https://podcasts.google.com/feed/aHR0cHM6Ly9hbmNob3IuZm0vcy84MWY4ODBmMC9wb2RjYXN0L3Jzcw"><img alt="Google Podcasts" src="/images/google.png" class="w-8 border-transparent hover:border-white border rounded-lg" /></a>
-					<a href="https://open.spotify.com/show/2aZnkERaQhEbglgP8kRUh0"><img src="/images/spotify.png" alt="Spotify" class="w-8 border-transparent hover:border-white border rounded-lg" /></a>
-					<a href="https://pca.st/am7k77fp"><img alt="Pocketcasts" src="/images/pocketcast.png" class="w-8 border-transparent hover:border-white border rounded-lg" /></a>
-					<a href="https://www.iheart.com/podcast/269-human-side-of-dev-108983437/"><img alt="iHeart Radio" src="/images/iheart.png" class="w-8 border-transparent hover:border-white border rounded-lg" /></a>
-					<a href="https://castbox.fm/channel/id5317162"><img alt="Castbox" src="/images/castbox.png" class="w-8 border-transparent hover:border-white border rounded-lg" /></a>
-					<a href="https://www.stitcher.com/show/1057831"><img alt="Stitcher" src="/images/stitcher.png" class="w-8 border-transparent hover:border-white border rounded-lg" /></a>
-					<a href="https://anchor.fm/s/81f880f0/podcast/rss"><img alt="RSS Feed" src="/images/rss.svg" class="w-8 border-transparent hover:border-white border rounded-lg" /></a>
-				</div>
-			</div>
-		</header>
-		<main>
-			<slot />
-		</main>
-		<footer class="text-center smallcaps text-sm text-stone-300 py-5">
-			Copyright © Lindsay Wardell
-		</footer>
-	</div>
-</body>
+    <script
+      data-goatcounter="https://humansideofdev.goatcounter.com/count"
+      async
+      src="//gc.zgo.at/count.js"
+    ></script>
+  </head>
 
+  <body class="bg-stone-700 text-white dark font-rubik">
+    <div
+      class="bg-stone-800 xl:w-3/5 lg:w-3/4 md:w-5/6 w-full m-auto md:my-12 flex flex-col gap-6"
+    >
+      <header class="bg-black flex flex-col md:flex-row shadow-lg rounded">
+        <a href="/">
+          <img
+            src="/images/logo.jpg"
+            class="w-[250px] m-auto"
+            alt="Human Side of Dev"
+          />
+        </a>
+        <div class="flex flex-col justify-center items-center flex-grow gap-6">
+          <h2
+            class="text-lg md:text-xl text-center pt-3 md:pt-0 italic text-stone-300 mx-3"
+          >
+            {slogan}
+          </h2>
+          <div class="flex gap-3 mb-4">
+            <a
+              href="https://podcasts.apple.com/us/podcast/human-side-of-dev/id1671873029"
+              ><img
+                alt="Apple Podcasts"
+                src="/images/apple.png"
+                class="w-8 border-transparent hover:border-white border rounded-lg"
+              /></a
+            >
+            <a
+              href="https://podcasts.google.com/feed/aHR0cHM6Ly9hbmNob3IuZm0vcy84MWY4ODBmMC9wb2RjYXN0L3Jzcw"
+              ><img
+                alt="Google Podcasts"
+                src="/images/google.png"
+                class="w-8 border-transparent hover:border-white border rounded-lg"
+              /></a
+            >
+            <a href="https://open.spotify.com/show/2aZnkERaQhEbglgP8kRUh0"
+              ><img
+                src="/images/spotify.png"
+                alt="Spotify"
+                class="w-8 border-transparent hover:border-white border rounded-lg"
+              /></a
+            >
+            <a href="https://pca.st/am7k77fp"
+              ><img
+                alt="Pocketcasts"
+                src="/images/pocketcast.png"
+                class="w-8 border-transparent hover:border-white border rounded-lg"
+              /></a
+            >
+            <a
+              href="https://www.iheart.com/podcast/269-human-side-of-dev-108983437/"
+              ><img
+                alt="iHeart Radio"
+                src="/images/iheart.png"
+                class="w-8 border-transparent hover:border-white border rounded-lg"
+              /></a
+            >
+            <a href="https://castbox.fm/channel/id5317162"
+              ><img
+                alt="Castbox"
+                src="/images/castbox.png"
+                class="w-8 border-transparent hover:border-white border rounded-lg"
+              /></a
+            >
+            <a href="https://www.stitcher.com/show/1057831"
+              ><img
+                alt="Stitcher"
+                src="/images/stitcher.png"
+                class="w-8 border-transparent hover:border-white border rounded-lg"
+              /></a
+            >
+            <a href="https://anchor.fm/s/81f880f0/podcast/rss"
+              ><img
+                alt="RSS Feed"
+                src="/images/rss.svg"
+                class="w-8 border-transparent hover:border-white border rounded-lg"
+              /></a
+            >
+          </div>
+        </div>
+      </header>
+      <main>
+        <slot />
+      </main>
+      <footer
+        class="text-center smallcaps text-sm text-stone-300 py-5 bg-stone-900"
+      >
+        Copyright © Lindsay Wardell
+      </footer>
+    </div>
+  </body>
 </html>
