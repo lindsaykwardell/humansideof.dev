@@ -1,32 +1,38 @@
 ---
-import dayjs from 'dayjs'
+import dayjs from "dayjs";
 
 interface Props {
-    episode: {
-        title: string
-        published: string
-        enclosure: {
-            url: string
-        }
-        description: string
-        summary: string
-    },
-    showSummary: boolean
+  episode: {
+    title: string;
+    published: string;
+    enclosure: {
+      url: string;
+    };
+    description: string;
+    summary: string;
+  };
+  showSummary: boolean;
 }
 
 const { episode, showSummary } = Astro.props;
 ---
+
 <article class="w-full md:w-3/4 m-auto flex flex-col gap-4 p-4 my-4">
-    <div class="flex flex-col md:flex-row gap-3 justify-between">
-        <a href={`/episode/${episode.title.toLowerCase().replaceAll(' ', '-')}`} class="hover:text-stone-300 transition duration-150 ">
-            <h2 class="text-2xl font-josefin underline">{episode.title}</h2>
-        </a>
-        <time datetime={episode.published} class="text-sm whitespace-nowrap">{dayjs(episode.published).format("MMM DD, YYYY")}</time>
-    </div>
-    <div class="prose dark:prose-dark m-auto">
-        <p set:html={showSummary ? episode.summary : episode.description} />
-    </div>
-    <audio controls class="w-full">
-        <source src={episode?.enclosure.url} />
-    </audio>
+  <div class="flex flex-col md:flex-row gap-3 justify-between">
+    <a
+      href={`/episode/${episode.title.toLowerCase().replaceAll(" ", "-")}`}
+      class="hover:text-stone-300 transition duration-150"
+    >
+      <h2 class="text-2xl font-josefin underline">{episode.title}</h2>
+    </a>
+    <time datetime={episode.published} class="text-sm whitespace-nowrap"
+      >{dayjs(episode.published).format("MMM DD, YYYY")}</time
+    >
+  </div>
+  <div class="prose dark:prose-dark m-auto">
+    <p set:html={showSummary ? episode.summary : episode.description} />
+  </div>
+  <audio controls class="w-full">
+    <source src={episode?.enclosure.url} />
+  </audio>
 </article>
