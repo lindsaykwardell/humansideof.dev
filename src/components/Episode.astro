@@ -12,9 +12,10 @@ interface Props {
     summary: string;
   };
   showSummary: boolean;
+  audioPosition?: "top" | "side";
 }
 
-const { episode, showSummary } = Astro.props;
+const { episode, showSummary, audioPosition } = Astro.props;
 ---
 
 <article class="w-full md:w-3/4 m-auto flex flex-col gap-4 p-4 my-4">
@@ -29,12 +30,23 @@ const { episode, showSummary } = Astro.props;
       >{dayjs(episode.published).format("MMM DD, YYYY")}</time
     >
   </div>
+  {
+    audioPosition === "top" && (
+      <audio controls class="w-full">
+        <source src={episode?.enclosure.url} />
+      </audio>
+    )
+  }
   <div class="flex flex-col lg:flex-row gap-3 justify-between items-center">
     <div class="prose dark:prose-dark m-auto w-full lg:w-1/2">
       <p set:html={showSummary ? episode.summary : episode.description} />
     </div>
-    <audio controls class="w-full lg:w-1/3">
-      <source src={episode?.enclosure.url} />
-    </audio>
+    {
+      (!audioPosition || audioPosition === "side") && (
+        <audio controls class="w-full lg:w-1/3">
+          <source src={episode?.enclosure.url} />
+        </audio>
+      )
+    }
   </div>
 </article>
