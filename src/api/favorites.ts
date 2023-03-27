@@ -42,8 +42,8 @@ const favorites: { [key: string]: Language } = {
     label: "HTML",
     episodes: [
       {
-        name: "Ben Myers",
-        url: "https://humansideof.dev/episode/5---documentation-and-accessibility-with-ben-myers",
+        name: "???",
+        url: "#",
       },
     ],
   },
