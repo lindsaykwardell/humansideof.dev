@@ -38,6 +38,15 @@ const favorites: { [key: string]: Language } = {
       },
     ],
   },
+  js: {
+    label: "Javascript",
+    episodes: [
+      {
+        name: "Rho Oof",
+        url: "https://humansideof.dev/episode/6---exploring-edge-cases-with-rho-oof",
+      },
+    ],
+  },
   html: {
     label: "HTML",
     episodes: [
