@@ -41,6 +41,9 @@ const sorted = Object.entries(favorites).sort(([_, a],[__, b]) => {
     import favorites from '../api/favorites'
     import Chart from 'chart.js/auto'
     import type { ChartItem } from 'chart.js'
+    // @ts-ignore
+    import colors from 'github-colors';
+    colors.init()
 
     const sorted = Object.entries(favorites).sort(([_, a],[__, b]) => {
         if (b.episodes.length - a.episodes.length === 0) {
@@ -62,7 +65,8 @@ const sorted = Object.entries(favorites).sort(([_, a],[__, b]) => {
             labels: sorted.map(favorite => favorite.label),
             datasets: [{
                 data: sorted.map(favorite => favorite.episodes.length),
-                hoverOffset: 4
+                hoverOffset: 4,
+                backgroundColor: sorted.map(favorite => colors.get(favorite.label)?.color)
             }]
         },
         options: {

@@ -26,7 +26,7 @@ const favorites: { [key: string]: Language } = {
     ],
   },
   ts: {
-    label: "Typescript",
+    label: "TypeScript",
     episodes: [
       {
         name: "Star Richardson",
@@ -39,7 +39,7 @@ const favorites: { [key: string]: Language } = {
     ],
   },
   js: {
-    label: "Javascript",
+    label: "JavaScript",
     episodes: [
       {
         name: "Rho Oof",
