@@ -56,6 +56,15 @@ const favorites: { [key: string]: Language } = {
       },
     ],
   },
+  swift: {
+    label: "Swift",
+    episodes: [
+      {
+        name: "Eddie Freeman",
+        url: "https://humansideof.dev/episode/7---learning-by-teaching-with-eddie-freeman",
+      },
+    ],
+  },
 };
 
 export default favorites;
