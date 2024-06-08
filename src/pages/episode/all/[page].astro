@@ -9,13 +9,18 @@ if (page <= 0) return Astro.redirect("/episode/all/1");
 
 const { entries } = await getEpisodes();
 
-const pageEntries = entries.slice((page - 1) * 10, page * 10);
+const pageSize = 2;
+
+const pageEntries = entries.slice((page - 1) * pageSize, page * pageSize);
+const nextPageEntries = entries.slice(page * pageSize, (page + 1) * pageSize);
 
 if (!pageEntries.length) return Astro.redirect("/404");
 
-const totalPages = Math.ceil(entries.length / 10);
+const totalPages = Math.ceil(entries.length / pageSize);
+const hasFirst = page !== 1;
 const hasPrevious = page > 1;
-const hasNext = pageEntries.length === 10;
+const hasNext = nextPageEntries.length > 0;
+const hasLast = page !== totalPages;
 ---
 
 <DefaultLayout>
@@ -27,26 +32,30 @@ const hasNext = pageEntries.length === 10;
       <Episode episode={episode} showSummary={false} />
     ))
   }
-  <div class="flex justify-around">
-    {
-      hasPrevious && (
-        <a
-          href={`/episode/all/${page - 1}`}
-          class="font-josefin text-stone-400 hover:text-stone-300 hover:underline"
-        >
-          Previous
-        </a>
-      )
-    }
-    {
-      hasNext && (
-        <a
-          href={`/episode/all/${page + 1}`}
-          class="font-josefin text-stone-400 hover:text-stone-300 hover:underline"
-        >
-          Next
-        </a>
-      )
-    }
+  <div class="flex justify-around w-[300px] m-auto">
+    <a
+      href="/episode/all/1"
+      class="font-josefin text-stone-400 hover:text-stone-300 hover:underline"
+    >
+      First
+    </a>
+    <a
+      href={`/episode/all/${page - 1 || 1}`}
+      class="font-josefin text-stone-400 hover:text-stone-300 hover:underline"
+    >
+      Previous
+    </a>
+    <a
+      href={`/episode/all/${page + 1 > totalPages ? totalPages : page + 1}`}
+      class="font-josefin text-stone-400 hover:text-stone-300 hover:underline"
+    >
+      Next
+    </a>
+    <a
+      href={`/episode/all/${totalPages}`}
+      class="font-josefin text-stone-400 hover:text-stone-300 hover:underline"
+    >
+      Last
+    </a>
   </div>
 </DefaultLayout>
