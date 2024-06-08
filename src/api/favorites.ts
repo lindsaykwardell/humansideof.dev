@@ -70,10 +70,14 @@ const favorites: { [key: string]: Language } = {
     episodes: [
       {
         name: "Blake Thomas",
-        url: "https://humansideof.dev/episode/8---all-about-management-with-blake-thomas"
-      }
-    ]
-  }
+        url: "https://humansideof.dev/episode/8---all-about-management-with-blake-thomas",
+      },
+      {
+        name: "Dustin Goodman",
+        url: "https://humansideof.dev/episode/9---from-architect-to-management-with-dustin-goodman",
+      },
+    ],
+  },
 };
 
 export default favorites;
