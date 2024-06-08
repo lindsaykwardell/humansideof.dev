@@ -1,4 +1,6 @@
 ---
+import { ViewTransitions } from "astro:transitions";
+
 interface Props {
   title?: string;
   description?: string;
@@ -52,6 +54,8 @@ permalink = permalink || "https://humansideof.dev";
       data-goatcounter="https://humansideofdev.goatcounter.com/count"
       async
       src="//gc.zgo.at/count.js"></script>
+
+    <ViewTransitions />
   </head>
 
   <body class="bg-stone-700 text-white dark font-rubik">

@@ -9,7 +9,7 @@ if (page <= 0) return Astro.redirect("/episode/all/1");
 
 const { entries } = await getEpisodes();
 
-const pageSize = 2;
+const pageSize = 10;
 
 const pageEntries = entries.slice((page - 1) * pageSize, page * pageSize);
 const nextPageEntries = entries.slice(page * pageSize, (page + 1) * pageSize);
