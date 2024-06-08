@@ -65,6 +65,15 @@ const favorites: { [key: string]: Language } = {
       },
     ],
   },
+  python: {
+    label: "Python",
+    episodes: [
+      {
+        name: "Blake Thomas",
+        url: "https://humansideof.dev/episode/8---all-about-management-with-blake-thomas"
+      }
+    ]
+  }
 };
 
 export default favorites;
