@@ -5,7 +5,9 @@ import { getEpisodes } from "../api/rss";
 
 const { entries } = await getEpisodes();
 
-const latest = entries.slice(0, 4);
+const episodesOnHomePage = 3;
+
+const latest = entries.slice(0, episodesOnHomePage);
 ---
 
 <DefaultLayout>
@@ -133,10 +135,16 @@ const latest = entries.slice(0, 4);
       <Episode episode={episode} showSummary={false} />
     ))
   }
-  <aside
-    class="flex justify-around font-josefin w-1/2 m-auto"
-  >
-    <a href="/episode/all/1" class="hover:underline text-stone-400 hover:text-stone-300">View All Episodes</a>
-    <a href="/favorite-languages" class="hover:underline text-stone-400 hover:text-stone-300">Favorite Programming Languages</a>
+  <aside class="flex justify-around font-josefin w-1/2 m-auto">
+    <a
+      href="/episode/all/1"
+      class="hover:underline text-stone-400 hover:text-stone-300"
+      >View All Episodes</a
+    >
+    <a
+      href="/favorite-languages"
+      class="hover:underline text-stone-400 hover:text-stone-300"
+      >Favorite Programming Languages</a
+    >
   </aside>
 </DefaultLayout>
