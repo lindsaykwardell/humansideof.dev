@@ -1,22 +1,25 @@
 ---
-import DefaultLayout from "@/layouts/DefaultLayout.astro";
-import Episode from "@/components/Episode.astro";
-import { getEpisodes } from "@/api/rss";
+import DefaultLayout from "../../../layouts/DefaultLayout.astro";
+import { getCollection } from "astro:content";
+import BlogPostCard from "@/components/BlogPostCard.astro";
 
 const page = +(Astro.params.page || 0);
 
 if (page <= 0) return Astro.redirect("/episode/all/1");
 
-const { entries } = await getEpisodes();
+const posts = await getCollection(
+  "blog",
+  (post) => post.data.published === true || import.meta.env.DEV
+);
 
 const pageSize = 10;
 
-const pageEntries = entries.slice((page - 1) * pageSize, page * pageSize);
-const nextPageEntries = entries.slice(page * pageSize, (page + 1) * pageSize);
+const pageEntries = posts.slice((page - 1) * pageSize, page * pageSize);
+const nextPageEntries = posts.slice(page * pageSize, (page + 1) * pageSize);
 
 if (!pageEntries.length) return Astro.redirect("/404");
 
-const totalPages = Math.ceil(entries.length / pageSize);
+const totalPages = Math.ceil(posts.length / pageSize);
 const hasFirst = page !== 1;
 const hasPrevious = page > 1;
 const hasNext = nextPageEntries.length > 0;
@@ -27,32 +30,30 @@ const hasLast = page !== totalPages;
   <h2 class="font-josefin text-xl text-center text-stone-400">
     Page {page} of {totalPages}
   </h2>
-  {
-    pageEntries?.map((episode: any) => (
-      <Episode episode={episode} showSummary={false} />
-    ))
-  }
+  <ul class="flex flex-col gap-4 pt-8">
+    {pageEntries?.map((post) => <BlogPostCard post={post} />)}
+  </ul>
   <div class="flex justify-around w-[300px] m-auto">
     <a
-      href="/episode/all/1"
+      href="/blog/all/1"
       class="font-josefin text-stone-400 hover:text-stone-300 hover:underline"
     >
       Latest
     </a>
     <a
-      href={`/episode/all/${page - 1 || 1}`}
+      href={`/blog/all/${page - 1 || 1}`}
       class="font-josefin text-stone-400 hover:text-stone-300 hover:underline"
     >
       Previous
     </a>
     <a
-      href={`/episode/all/${page + 1 > totalPages ? totalPages : page + 1}`}
+      href={`/blog/all/${page + 1 > totalPages ? totalPages : page + 1}`}
       class="font-josefin text-stone-400 hover:text-stone-300 hover:underline"
     >
       Next
     </a>
     <a
-      href={`/episode/all/${totalPages}`}
+      href={`/blog/all/${totalPages}`}
       class="font-josefin text-stone-400 hover:text-stone-300 hover:underline"
     >
       Oldest

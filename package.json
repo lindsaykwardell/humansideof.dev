@@ -16,6 +16,7 @@
 		"astro": "^4.10.1",
 		"chart.js": "^4.4.3",
 		"dayjs": "^1.11.11",
+		"fuse.js": "^7.0.0",
 		"github-colors": "^2.2.20",
 		"tailwindcss": "^3.4.4"
 	},

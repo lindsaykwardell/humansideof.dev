@@ -12,7 +12,7 @@ let { title, description, permalink } = Astro.props;
 const slogan =
   "Listen to developers talk about their experiences in the tech industry";
 
-title = `Human Side of Dev${title ? ` - ${title}` : ""}`;
+title = `${title ? `${title} | ` : ""}Human Side of Dev`;
 description = description || slogan;
 permalink = permalink || "https://humansideof.dev";
 ---
@@ -71,12 +71,37 @@ permalink = permalink || "https://humansideof.dev";
           />
         </a>
         <div class="flex flex-col justify-center items-center flex-grow gap-6">
+          <nav class="order-2">
+            <ul class="flex gap-3">
+              <li>
+                <a href="/" class="hover:text-stone-400 hover:underline">Home</a
+                >
+              </li>
+              <li>
+                <a href="/about" class="hover:text-stone-400 hover:underline"
+                  >About</a
+                >
+              </li>
+              <li>
+                <a
+                  href="/episode/all"
+                  class="hover:text-stone-400 hover:underline">Episodes</a
+                >
+              </li>
+              <li>
+                <a
+                  href="/blog/all/1"
+                  class="hover:text-stone-400 hover:underline">Blog</a
+                >
+              </li>
+            </ul>
+          </nav>
           <h2
-            class="text-lg md:text-xl text-center pt-3 md:pt-0 italic text-stone-300 mx-3"
+            class="order-1 text-lg md:text-xl text-center pt-3 md:pt-0 italic text-stone-300 mx-3"
           >
             {slogan}
           </h2>
-          <div class="flex gap-3 mb-4">
+          <div class="order-3 flex gap-3 mb-4">
             <a
               href="https://podcasts.apple.com/us/podcast/human-side-of-dev/id1671873029"
               ><img

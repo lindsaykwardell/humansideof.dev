@@ -1,0 +1,16 @@
+---
+import DefaultLayout from "@/layouts/DefaultLayout.astro";
+import { getCollection } from "astro:content";
+
+const posts = await getCollection("blog");
+---
+<DefaultLayout>
+  <h1>Blog</hjson>
+  <ul>
+    {posts.map((post) => (
+      <li>
+        <a href={`/blog/${post.slug}`}>{post.data.title}</a>
+      </li>
+    ))}
+  </ul>
+</DefaultLayout>

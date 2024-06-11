@@ -1,5 +1,6 @@
 ---
 import dayjs from "dayjs";
+import Lindsay from "./Lindsay.astro";
 
 interface Props {
   episode: {
@@ -16,37 +17,56 @@ interface Props {
 }
 
 const { episode, showSummary, audioPosition } = Astro.props;
+
+const slug = episode.title.toLowerCase().replaceAll(" ", "-");
 ---
 
-<article class="w-full md:w-3/4 m-auto flex flex-col gap-4 p-4 my-4">
-  <div class="flex flex-col md:flex-row gap-3 justify-between">
-    <a
-      href={`/episode/${episode.title.toLowerCase().replaceAll(" ", "-")}`}
-      class="hover:text-stone-300 transition duration-150"
-    >
-      <h2 class="text-2xl font-josefin underline">{episode.title}</h2>
-    </a>
+<article
+  transition:animate="initial"
+  class="w-full md:w-3/4 m-auto flex flex-col gap-4 p-4 my-4"
+>
+  <div class="flex flex-col md:flex-row gap-3 justify-between" transition:name={`${slug}-title`}>
+    {
+      !showSummary ? (
+        <a
+          href={`/episode/${slug}`}
+          class="hover:text-stone-300 transition duration-150"
+        >
+          <h2 class="text-2xl font-josefin underline">{episode.title}</h2>
+        </a>
+      ) : (
+        <h2 class="text-2xl font-josefin">{episode.title}</h2>
+      )
+    }
     <time datetime={episode.published} class="text-sm whitespace-nowrap"
       >{dayjs(episode.published).format("MMM DD, YYYY")}</time
     >
   </div>
   {
     audioPosition === "top" && (
-      <audio controls class="w-full">
+      <audio transition:name={`${slug}-audio`} controls class="w-full">
         <source src={episode?.enclosure.url} />
       </audio>
     )
   }
   <div class="flex flex-col lg:flex-row gap-3 justify-between items-center">
-    <div class="prose dark:prose-dark m-auto w-full lg:w-1/2">
+    <div class="prose dark:prose-dark m-auto w-full lg:w-1/2" transition:name={`${slug}-conteint`}>
       <p set:html={showSummary ? episode.summary : episode.description} />
     </div>
     {
       (!audioPosition || audioPosition === "side") && (
-        <audio controls class="w-full lg:w-1/3">
+        <audio transition:name={`${slug}-audio`} controls class="w-full lg:w-1/3">
           <source src={episode?.enclosure.url} />
         </audio>
       )
     }
   </div>
 </article>
+{
+  showSummary && (
+    <div>
+      <hr class="w-11/12 m-auto" />
+      <Lindsay />
+    </div>
+  )
+}
