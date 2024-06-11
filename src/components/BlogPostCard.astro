@@ -11,12 +11,10 @@ const { post } = Astro.props;
 
 <li class="w-11/12 md:w-3/4 m-auto">
   <a href={`/blog/${post.slug}`} class="flex">
-    <Image
+    <img
       src={post.data.cover_image}
       alt={post.data.title}
       class="w-36 h-36 md:w-52 md:h-52 aspect-square object-cover rounded-lg"
-      width={208}
-      height={208}
       transition:name={`${post.slug}-image`}
     />
     <div class="ml-4 flex flex-col md:gap-3">
