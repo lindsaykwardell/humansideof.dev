@@ -2,21 +2,15 @@
 import DefaultLayout from "@/layouts/DefaultLayout.astro";
 import Episode from "@/components/Episode.astro";
 import Lindsay from "@/components/Lindsay.astro";
-import { getEpisodes } from "@/api/rss";
-import { getCollection } from "astro:content";
+import { getEpisodes } from "@/content/episode";
 import BlogPostCard from "@/components/BlogPostCard.astro";
 import ConvertKit from "@/components/ConvertKit.astro";
-
-const { entries } = await getEpisodes();
-const posts = await getCollection(
-  "blog",
-  (post) => post.data.published === true || import.meta.env.DEV
-);
+import { allPosts } from "@/content/blog";
 
 const episodesOnHomePage = 3;
 
-const latestPodcasts = entries.slice(0, episodesOnHomePage);
-const latestPosts = posts.slice(0, episodesOnHomePage);
+const latestPodcasts = await getEpisodes(episodesOnHomePage);
+const latestPosts = await allPosts(episodesOnHomePage);
 ---
 
 <DefaultLayout>

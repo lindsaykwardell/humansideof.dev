@@ -1,13 +1,13 @@
 ---
 import DefaultLayout from "@/layouts/DefaultLayout.astro";
 import Episode from "@/components/Episode.astro";
-import { getEpisodes } from "@/api/rss";
+import { getEpisodes } from "@/content/episode";
 
 const page = +(Astro.params.page || 0);
 
 if (page <= 0) return Astro.redirect("/episode/all/1");
 
-const { entries } = await getEpisodes();
+const entries = await getEpisodes();
 
 const pageSize = 10;
 

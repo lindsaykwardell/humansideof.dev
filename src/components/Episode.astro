@@ -35,10 +35,10 @@ const slug = episode.title.toLowerCase().replaceAll(" ", "-");
           href={`/episode/${slug}`}
           class="hover:text-stone-300 transition duration-150"
         >
-          <h2 class="text-2xl font-josefin underline">{episode.title}</h2>
+          <h2 class="text-xl md:text-2xl font-josefin underline">{episode.title}</h2>
         </a>
       ) : (
-        <h2 class="text-2xl font-josefin">{episode.title}</h2>
+        <h2 class="text-xl md:text-2xl font-josefin">{episode.title}</h2>
       )
     }
     <time datetime={episode.published} class="text-sm whitespace-nowrap"
