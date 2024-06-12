@@ -3,6 +3,7 @@ import DefaultLayout from "../../layouts/DefaultLayout.astro";
 import BlogPost from "../../components/BlogPost.astro";
 import Lindsay from "@/components/Lindsay.astro";
 import { getEntry } from "astro:content";
+import ConvertKit from "@/components/ConvertKit.astro";
 
 const { slug } = Astro.params as { slug: string };
 
@@ -23,6 +24,7 @@ const canonical_url: string = post.data.canonical_url;
   description={description}
 >
   <BlogPost post={post} />
+  <ConvertKit />
   <div class="pt-4">
     <hr class="w-11/12 m-auto" />
     <Lindsay />

@@ -5,6 +5,7 @@ import Lindsay from "@/components/Lindsay.astro";
 import { getEpisodes } from "@/api/rss";
 import { getCollection } from "astro:content";
 import BlogPostCard from "@/components/BlogPostCard.astro";
+import ConvertKit from "@/components/ConvertKit.astro";
 
 const { entries } = await getEpisodes();
 const posts = await getCollection(
@@ -32,4 +33,5 @@ const latestPosts = posts.slice(0, episodesOnHomePage);
   <ul class="flex flex-col gap-4 pt-8">
     {latestPosts?.map((post) => <BlogPostCard post={post} />)}
   </ul>
+  <ConvertKit />
 </DefaultLayout>
