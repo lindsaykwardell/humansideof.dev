@@ -6,7 +6,7 @@ export async function allPosts(limit?: number) {
     "blog",
     (post) =>
       (post.data.published === true || import.meta.env.DEV) &&
-      dayjs(post.data.pubDate).isAfter(dayjs())
+      dayjs(post.data.pubDate).isBefore(dayjs())
   );
 
   return [...posts]
