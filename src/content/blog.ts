@@ -4,7 +4,9 @@ import dayjs from "dayjs";
 export async function allPosts(limit?: number) {
   const posts = await getCollection(
     "blog",
-    (post) => post.data.published === true || import.meta.env.DEV
+    (post) =>
+      (post.data.published === true || import.meta.env.DEV) &&
+      dayjs(post.data.pubDate).isAfter(dayjs())
   );
 
   return [...posts]

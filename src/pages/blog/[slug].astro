@@ -4,13 +4,20 @@ import BlogPost from "../../components/BlogPost.astro";
 import Lindsay from "@/components/Lindsay.astro";
 import { getEntry } from "astro:content";
 import ConvertKit from "@/components/ConvertKit.astro";
+import dayjs from "dayjs";
 
 const { slug } = Astro.params as { slug: string };
 
 const post = await getEntry("blog", slug);
 const isPreview = Astro.url.searchParams.has("preview") || import.meta.env.DEV;
 
-if (!post || (post.data.published === false && !isPreview))
+if (
+  !post ||
+  (!post.data.published && !isPreview) ||
+  (post.data.published &&
+    !isPreview &&
+    dayjs(post.data.pubDate).isAfter(dayjs()))
+)
   throw new Error(`Post not found: ${slug}`);
 
 const title: string = post.data.title;
