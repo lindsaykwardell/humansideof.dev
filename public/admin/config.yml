@@ -24,7 +24,12 @@ collections:
       - { label: "Description", name: "description", widget: "string" }
       - { label: "Tags", name: "tags", widget: "string" }
       - { label: "Cover Image", name: "cover_image", widget: "image" }
-      - { label: "Canonical URL", name: "canonical_url", widget: "string" }
+      - {
+          label: "Canonical URL",
+          name: "canonical_url",
+          widget: "string",
+          default: "https://humansideof.dev/blog/{{slug}}",
+        }
       - { label: "Body", name: "body", widget: "markdown" }
     editor:
       preview: false
