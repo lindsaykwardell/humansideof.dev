@@ -8,8 +8,9 @@ import ConvertKit from "@/components/ConvertKit.astro";
 const { slug } = Astro.params as { slug: string };
 
 const post = await getEntry("blog", slug);
+const isPreview = Astro.url.searchParams.has("preview") || import.meta.env.DEV;
 
-if (!post || (!post.data.published && !import.meta.env.DEV))
+if (!post || (post.data.published === false && !isPreview))
   throw new Error(`Post not found: ${slug}`);
 
 const title: string = post.data.title;
