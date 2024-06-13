@@ -54,6 +54,8 @@ permalink = permalink || "https://humansideof.dev";
       data-goatcounter="https://humansideofdev.goatcounter.com/count"
       async
       src="//gc.zgo.at/count.js"></script>
+    <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"
+    ></script>
 
     <ViewTransitions />
   </head>
@@ -165,5 +167,20 @@ permalink = permalink || "https://humansideof.dev";
         Copyright © Lindsay Wardell
       </footer>
     </div>
+
+    <script>
+      // @ts-ignore
+      if (window.netlifyIdentity) {
+        // @ts-ignore
+        window.netlifyIdentity.on("init", (user) => {
+          if (!user) {
+            // @ts-ignore
+            window.netlifyIdentity.on("login", () => {
+              document.location.href = "/admin/";
+            });
+          }
+        });
+      }
+    </script>
   </body>
 </html>

@@ -1,0 +1,21 @@
+backend:
+  name: git-gateway
+  branch: main # Branch to update (optional; defaults to master)
+
+# This line should *not* be indented
+media_folder: "public/images" # Media files will be stored in the repo under images/uploads
+
+collections:
+  - name: "blog" # Used in routes, e.g., /admin/collections/blog
+    label: "Blog" # Used in the UI
+    folder: "src/content/blog" # The path to the folder where the documents are stored
+    create: true # Allow users to create new documents in this collection
+    slug: "{{slug}}" # Filename template, e.g., YYYY-MM-DD-title.md
+    fields: # The fields for each document, usually in front matter
+      - { label: "Title", name: "title", widget: "string" }
+      - { label: "Published", name: "published", widget: "boolean" }
+      - { label: "Publish Date", name: "pubDate", widget: "datetime" }
+      - { label: "Tags", name: "tags", widget: "string" }
+      - { label: "Cover Image", name: "cover_image", widget: "image" }
+      - { label: "Canonical URL", name: "canonical_url", widget: "string" }
+      - { label: "Body", name: "body", widget: "markdown" }
