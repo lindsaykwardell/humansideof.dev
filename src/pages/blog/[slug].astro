@@ -23,7 +23,8 @@ if (
 const title: string = post.data.title;
 const author: string = post.data.author;
 const description: string = post.data.description;
-const canonical_url: string = post.data.canonical_url;
+const canonical_url: string =
+  post.data.canonical_url || "https://humansideof.dev/blog/" + slug;
 ---
 
 <DefaultLayout

@@ -28,7 +28,7 @@ collections:
           label: "Canonical URL",
           name: "canonical_url",
           widget: "string",
-          default: "https://humansideof.dev/blog/{{slug}}",
+          required: false,
         }
       - { label: "Body", name: "body", widget: "markdown" }
     editor:
