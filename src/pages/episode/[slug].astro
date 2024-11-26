@@ -14,15 +14,28 @@ const episode = await getEpisode(slug);
 if (!episode) return Astro.redirect("/404");
 ---
 
-<DefaultLayout
-  title={episode.title}
-  description={episode.description}
-  permalink={`https://humansideof.dev/episode/${slug}`}
->
-  <Episode episode={episode} showSummary={true} audioPosition="top" />
-  <ConvertKit />
-  <div>
-    <hr class="w-11/12 m-auto" />
-    <Lindsay />
-  </div>
-</DefaultLayout>
+<RootElement>
+  <DefaultLayout
+    title={episode.title}
+    description={episode.description}
+    permalink={`https://humansideof.dev/episode/${slug}`}
+  >
+    <Episode episode={episode} showSummary={true} audioPosition="top" />
+    <ConvertKit />
+    <div>
+      <hr class="w-11/12 m-auto" />
+      <Lindsay />
+    </div>
+    <div id="bluesky-comments"></div>
+  </DefaultLayout>
+</RootElement>
+
+<script>
+  import "bluesky-comments";
+
+  RootElement.ready(($) => {
+    console.log("Hi!");
+    // @ts-ignore
+    initBlueskyComments("bluesky-comments", { author: "humansideof.dev" });
+  });
+</script>
