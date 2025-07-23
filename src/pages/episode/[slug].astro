@@ -34,7 +34,6 @@ if (!episode) return Astro.redirect("/404");
   import "bluesky-comments";
 
   RootElement.ready(($) => {
-    console.log("Hi!");
     // @ts-ignore
     initBlueskyComments("bluesky-comments", { author: "humansideof.dev" });
   });
